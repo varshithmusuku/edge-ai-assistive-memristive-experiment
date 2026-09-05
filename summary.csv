@@ -1,0 +1,5 @@
+condition,n_runs,mean_accuracy_pct,sample_sd_accuracy_pct
+Baseline,5,49.5,20.2
+PTQ,5,51.0,19.2
+FAT,5,71.0,10.3
+QAT,5,71.0,10.3

@@ -1,0 +1,11 @@
+python: 3.9.13 (tags/v3.9.13:6de2ca5, May 17 2022, 16:36:42) [MSC v.1929 64 bit (AMD64)]
+torch: 1.10.0+cpu
+numpy: 1.23.5
+dataset_master_seed: 42
+seeds: [0, 1, 2, 3, 4]
+classes: ['Flat Wall', 'Ascending Stairs', 'Descending Stairs', 'Low Obstacle']
+train_config: {'epochs': 100, 'lr': 0.001, 'batch_size': 32, 'quant_bits': 4, 'train_saf_rate': 0.3}
+critical_saf_level: 0.3
+memtorch_available: True
+memtorch: 1.1.6-cpu
+scikit-learn: 1.6.1
