@@ -1,0 +1,12 @@
+ d (m)  v (m/s)  f (Hz)  clamped?  implied alpha
+  4.03     0.80    1.59     False          8.010
+  3.54     0.80    1.81     False          8.009
+  3.04     0.80    2.11     False          8.018
+  2.52     1.00    3.17     False          7.988
+  2.04     1.00    3.93     False          8.017
+  1.52     1.40    7.36     False          7.991
+  1.01     1.40   11.10     False          8.008
+
+implied alpha: min=7.988  max=8.018  mean=8.006  sd=0.012
+CHECK PASSED: all 7 rows are within 0.05 of alpha = 8.0
+Saved fig3_theoretical_uffl_behavior.png

@@ -1,0 +1,30 @@
+
+Baseline: total=1500  accuracy=0.4947  macro-F1=0.490
+  class              support    prec  recall      F1
+  Flat_Wall              380   0.389   0.305   0.342
+  Ascending_Stairs       330   0.355   0.673   0.464
+  Descending_Stairs      350   0.670   0.400   0.501
+  Low_Obstacle           440   0.719   0.600   0.654
+
+PTQ: total=1500  accuracy=0.5100  macro-F1=0.510
+  class              support    prec  recall      F1
+  Flat_Wall              380   0.517   0.411   0.457
+  Ascending_Stairs       330   0.337   0.621   0.437
+  Descending_Stairs      350   0.676   0.400   0.503
+  Low_Obstacle           440   0.689   0.600   0.642
+
+FAT: total=1500  accuracy=0.7100  macro-F1=0.649
+  class              support    prec  recall      F1
+  Flat_Wall              380   1.000   0.166   0.284
+  Ascending_Stairs       330   0.711   0.642   0.675
+  Descending_Stairs      350   0.693   1.000   0.819
+  Low_Obstacle           440   0.694   1.000   0.819
+
+FAT+QAT: total=1500  accuracy=0.7100  macro-F1=0.652
+  class              support    prec  recall      F1
+  Flat_Wall              380   1.000   0.197   0.330
+  Ascending_Stairs       330   0.590   0.606   0.598
+  Descending_Stairs      350   0.701   1.000   0.824
+  Low_Obstacle           440   0.750   1.000   0.857
+
+Saved per_class_metrics.csv

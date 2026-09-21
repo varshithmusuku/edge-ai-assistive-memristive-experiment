@@ -1,0 +1,17 @@
+condition,true_class,p_same_gain,p_gain_up_20pct,p_gain_down_16.7pct
+Baseline,Flat_Wall,0.4026,0.5974,0
+Baseline,Ascending_Stairs,0.6727,0,0.3273
+Baseline,Descending_Stairs,0.6,0,0.4
+Baseline,Low_Obstacle,0.6,0.4,0
+PTQ,Flat_Wall,0.4105,0.5895,0
+PTQ,Ascending_Stairs,0.6212,0,0.3788
+PTQ,Descending_Stairs,0.6,0,0.4
+PTQ,Low_Obstacle,0.6,0.4,0
+FAT,Flat_Wall,0.3658,0.6342,0
+FAT,Ascending_Stairs,0.6424,0,0.3576
+FAT,Descending_Stairs,1.0,0,0.0
+FAT,Low_Obstacle,1.0,0.0,0
+FAT+QAT,Flat_Wall,0.2421,0.7579,0
+FAT+QAT,Ascending_Stairs,0.6061,0,0.3939
+FAT+QAT,Descending_Stairs,1.0,0,0.0
+FAT+QAT,Low_Obstacle,1.0,0.0,0

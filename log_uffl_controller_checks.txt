@@ -1,0 +1,43 @@
+=== A. Table VII vs Eq. (2), alpha = 8.0 ===
+    d     v f_reported    f_eq2  abs diff
+ 4.03  0.80       1.59    1.588     0.002
+ 3.54  0.80       1.81    1.808     0.002
+ 3.04  0.80       2.11    2.105     0.005
+ 2.52  1.00       3.17    3.175     0.005
+ 2.04  1.00       3.93    3.922     0.008
+ 1.52  1.40       7.36    7.368     0.008
+ 1.01  1.40      11.10   11.089     0.011
+max |difference| = 0.011 Hz
+
+=== B. What is the 'Duty Cycle (%)' column? ===
+ f (Hz) reported %  f/fmax*100  PWM/255*100
+   1.59        7.9        7.95         7.45
+   1.81        9.0        9.05         8.63
+   2.11       10.5       10.55        10.20
+   3.17       15.9       15.85        15.29
+   3.93       19.6       19.65        19.22
+   7.36       36.8       36.80        36.47
+  11.10       55.5       55.50        55.29
+=> reported column tracks f/f_max (normalised feedback frequency), NOT MCU awake time.
+
+=== C. alpha sweep: v in [0,1.6] m/s, d in [0.05, 5] m ===
+alpha= 0.5: finite=True  max unclamped=  8.00 Hz  max f_cmd= 8.00 Hz  clamped fraction=0.000
+alpha= 1.5: finite=True  max unclamped= 24.00 Hz  max f_cmd=20.00 Hz  clamped fraction=0.002
+alpha= 8.0: finite=True  max unclamped=128.00 Hz  max f_cmd=20.00 Hz  clamped fraction=0.055
+=> alpha = 0.5 never reaches f_max in this range; alpha = 1.5 only at v >= 1.33 m/s and d <= eps.
+
+=== D. Edge cases (alpha = 8.0) ===
+d= 0.0 v=1.0 -> f_cmd=20.00 Hz
+d=0.05 v=1.0 -> f_cmd=20.00 Hz
+d= 0.1 v=1.0 -> f_cmd=20.00 Hz
+d= 0.5 v=1.0 -> f_cmd=16.00 Hz
+d= 0.1 v=0.0 -> f_cmd=0.00 Hz   (stationary user: NO feedback)
+d= 0.5 v=0.0 -> f_cmd=0.00 Hz   (stationary user: NO feedback)
+d= 1.0 v=0.0 -> f_cmd=0.00 Hz   (stationary user: NO feedback)
+d=NaN v=1.0 -> f_cmd=nan   (invalid reading propagates as NaN)
+
+=== E. PROPOSED minimum-speed floor  v_eff = max(v, v_min)  (v_min = 0.3 m/s, illustrative) ===
+d=0.5 v=0.0 -> without floor 0.00 Hz | with floor 4.80 Hz
+d=1.0 v=0.0 -> without floor 0.00 Hz | with floor 2.40 Hz
+d=2.0 v=0.0 -> without floor 0.00 Hz | with floor 1.20 Hz
+d=4.0 v=0.0 -> without floor 0.00 Hz | with floor 0.60 Hz

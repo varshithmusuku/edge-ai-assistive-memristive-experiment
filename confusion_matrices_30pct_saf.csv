@@ -1,0 +1,19 @@
+# Pooled over 5 runs, 30% SAF. Rows = true class, columns = predicted class.
+# TRANSCRIBED FROM Fig. 9 OF THE MANUSCRIPT. Verify against the raw outputs in the experiment repository before publishing.
+condition,true_class,pred_Flat_Wall,pred_Ascending_Stairs,pred_Descending_Stairs,pred_Low_Obstacle
+Baseline,Flat_Wall,116,158,69,37
+Baseline,Ascending_Stairs,42,222,0,66
+Baseline,Descending_Stairs,140,70,140,0
+Baseline,Low_Obstacle,0,176,0,264
+PTQ,Flat_Wall,156,157,67,0
+PTQ,Ascending_Stairs,6,205,0,119
+PTQ,Descending_Stairs,140,70,140,0
+PTQ,Low_Obstacle,0,176,0,264
+FAT,Flat_Wall,63,86,155,76
+FAT,Ascending_Stairs,0,212,0,118
+FAT,Descending_Stairs,0,0,350,0
+FAT,Low_Obstacle,0,0,0,440
+FAT+QAT,Flat_Wall,75,139,149,17
+FAT+QAT,Ascending_Stairs,0,200,0,130
+FAT+QAT,Descending_Stairs,0,0,350,0
+FAT+QAT,Low_Obstacle,0,0,0,440

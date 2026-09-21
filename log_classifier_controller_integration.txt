@@ -1,0 +1,47 @@
+Policy (as written in the manuscript): gain per PREDICTED class = {'Flat_Wall': 1.0, 'Ascending_Stairs': 1.2, 'Descending_Stairs': 1.2, 'Low_Obstacle': 1.0}
+Frequency depends on the predicted class only through this gain; distance and speed enter via Eq. (2).
+
+=== Baseline (30% SAF, pooled over 5 runs) ===
+  true class         same gain  gain +20%  gain -16.7%   meaning of the last two columns
+  Flat_Wall              0.403      0.597        0.000   wall/low mistaken for stairs -> frequency raised by 20%
+  Ascending_Stairs       0.673      0.000        0.327   stairs mistaken for wall/low -> stairs bias LOST (frequency 16.7% lower)
+  Descending_Stairs      0.600      0.000        0.400   stairs mistaken for wall/low -> stairs bias LOST (frequency 16.7% lower)
+  Low_Obstacle           0.600      0.400        0.000   wall/low mistaken for stairs -> frequency raised by 20%
+  class-label accuracy = 0.495
+
+=== PTQ (30% SAF, pooled over 5 runs) ===
+  true class         same gain  gain +20%  gain -16.7%   meaning of the last two columns
+  Flat_Wall              0.411      0.589        0.000   wall/low mistaken for stairs -> frequency raised by 20%
+  Ascending_Stairs       0.621      0.000        0.379   stairs mistaken for wall/low -> stairs bias LOST (frequency 16.7% lower)
+  Descending_Stairs      0.600      0.000        0.400   stairs mistaken for wall/low -> stairs bias LOST (frequency 16.7% lower)
+  Low_Obstacle           0.600      0.400        0.000   wall/low mistaken for stairs -> frequency raised by 20%
+  class-label accuracy = 0.510
+
+=== FAT (30% SAF, pooled over 5 runs) ===
+  true class         same gain  gain +20%  gain -16.7%   meaning of the last two columns
+  Flat_Wall              0.366      0.634        0.000   wall/low mistaken for stairs -> frequency raised by 20%
+  Ascending_Stairs       0.642      0.000        0.358   stairs mistaken for wall/low -> stairs bias LOST (frequency 16.7% lower)
+  Descending_Stairs      1.000      0.000        0.000   stairs mistaken for wall/low -> stairs bias LOST (frequency 16.7% lower)
+  Low_Obstacle           1.000      0.000        0.000   wall/low mistaken for stairs -> frequency raised by 20%
+  class-label accuracy = 0.710
+
+=== FAT+QAT (30% SAF, pooled over 5 runs) ===
+  true class         same gain  gain +20%  gain -16.7%   meaning of the last two columns
+  Flat_Wall              0.242      0.758        0.000   wall/low mistaken for stairs -> frequency raised by 20%
+  Ascending_Stairs       0.606      0.000        0.394   stairs mistaken for wall/low -> stairs bias LOST (frequency 16.7% lower)
+  Descending_Stairs      1.000      0.000        0.000   stairs mistaken for wall/low -> stairs bias LOST (frequency 16.7% lower)
+  Low_Obstacle           1.000      0.000        0.000   wall/low mistaken for stairs -> frequency raised by 20%
+  class-label accuracy = 0.710
+
+=== Worked example: ASCENDING STAIRS along the Table VII profile, FAT + QAT ===
+P(stairs bias lost) = 0.394
+ d (m)  v (m/s)  f if stairs (Hz)   f if predicted wall/low (Hz)  reduction
+  4.03     0.80              1.91                           1.59      16.7%
+  3.54     0.80              2.17                           1.81      16.7%
+  3.04     0.80              2.53                           2.11      16.7%
+  2.52     1.00              3.81                           3.17      16.7%
+  2.04     1.00              4.71                           3.92      16.7%
+  1.52     1.40              8.84                           7.37      16.7%
+  1.01     1.40             13.31                          11.09      16.7%
+
+Saved integration_results.csv

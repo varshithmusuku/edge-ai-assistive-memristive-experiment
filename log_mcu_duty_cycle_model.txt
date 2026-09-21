@@ -1,0 +1,45 @@
+=== PART 1: arithmetic of Tables II and III (I_sleep = 0, no wake-up term, as in the paper) ===
+  duty  I_avg (mA)  reduction
+100.0%      11.400       0.0%
+ 30.0%       3.420      70.0%
+ 15.0%       1.710      85.0%
+  7.5%       0.855      92.5%
+  5.0%       0.570      95.0%
+ 22.5%       2.565      77.5%
+4.25 mW check: 0.85 mA x 5.0 V = 4.25 mW  (i.e. an AVERAGE-power scenario, not 'active power')
+
+=== PART 2: controller-only awake fraction from Table VII ===
+ f (Hz)  t_exec (us)  reported duty %  f*t_exec %   evaluated at fixed r_eval: 10 Hz | 20 Hz | 50 Hz
+   1.59           17              7.9      0.0027   0.017% | 0.034% | 0.085%
+   1.81           43              9.0      0.0078   0.043% | 0.086% | 0.215%
+   2.11           42             10.5      0.0089   0.042% | 0.084% | 0.210%
+   3.17           43             15.9      0.0136   0.043% | 0.086% | 0.215%
+   3.93           43             19.6      0.0169   0.043% | 0.086% | 0.215%
+   7.36           44             36.8      0.0324   0.044% | 0.088% | 0.220%
+  11.10           44             55.5      0.0488   0.044% | 0.088% | 0.220%
+=> controller arithmetic alone: 0.0027% - 0.0488% of each second (one evaluation per pulse); even at 50 evaluations/s it is <= 0.22%.
+   The reported 7.9-55.5% therefore cannot be MCU awake time computed from these execution times.
+
+=== PART 2b: awake time if the MCU busy-waits for an HC-SR04 echo (illustrative) ===
+max echo wait for 4 m = 23.3 ms
+   5 measurements/s x 23.3 ms = 11.7% awake (if blocking pulseIn-style wait is used)
+  10 measurements/s x 23.3 ms = 23.3% awake (if blocking pulseIn-style wait is used)
+  20 measurements/s x 23.3 ms = 46.6% awake (if blocking pulseIn-style wait is used)
+=> awake time depends on sensing/wake-up design, which the reported runs did not measure.
+
+=== PART 3: sensitivity of the 92.5% figure (SWEEP VALUES, not datasheet values) ===
+ I_sleep (mA)  I_avg (mA)  reduction vs 11.4 mA
+        0.000       0.855                 92.5%
+        0.010       0.864                 92.4%
+        0.100       0.948                 91.7%
+        1.000       1.780                 84.4%
+
+ t_awake/event (ms)  events/s   D = r*t
+                  1         2      0.2%
+                  1        10      1.0%
+                  5         2      1.0%
+                  5        10      5.0%
+                 20         2      4.0%
+                 20        10     20.0%
+
+Saved mcu_duty_cycle_model_output.csv
